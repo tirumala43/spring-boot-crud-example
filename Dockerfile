@@ -1,5 +1,5 @@
 # ---------- Stage 1: Build JAR using Maven ----------
-FROM maven:3.9.4-eclipse-temurin-17 as builder
+FROM maven:3.9.4-eclipse-temurin-17 as build
 WORKDIR /app
 COPY . .
 RUN mvn clean package -DskipTests
@@ -12,7 +12,7 @@ ENV SPRING_PROFILES_ACTIVE=prod
 ENV JAVA_OPTS=""
 
 # Copy JAR from builder stage
-COPY --from=builder /app/target/*.jar app.jar
+COPY --from=build /app/target/*.jar app.jar
 
 # Use working directory
 WORKDIR /app
