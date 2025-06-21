@@ -47,4 +47,17 @@ public class ProductController {
     public String deleteProduct(@PathVariable int id) {
         return service.deleteProduct(id);
     }
+
+     @GetMapping("/health")
+    public String healthCheck() {                                 
+        return "Product service is healthy!";
+    }
+
+    @GetMapping("/products")
+    public List<Map<String, String>> getAllProducts() {
+        List<Map<String, String>> products = new ArrayList<>();
+        products.add(Map.of("id", "1", "name", "Laptop"));
+        products.add(Map.of("id", "2", "name", "Phone"));
+        return products;
+    }
 }
