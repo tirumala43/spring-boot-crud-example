@@ -20,10 +20,16 @@ pipeline {
     }
 
     stage('Verify Workspace') {
-        steps {
-             sh 'pwd && ls -la'
-                }
-        }
+  steps {
+    sh '''
+      echo "🔍 Current Directory:"
+      pwd
+      echo "📂 List of Files:"
+      ls -la
+    '''
+  }
+}
+
 
     stage('Build Docker Image') {
       steps {
