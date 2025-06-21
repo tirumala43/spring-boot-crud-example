@@ -15,9 +15,15 @@ pipeline {
 
     stage('Build JAR') {
       steps {
-        sh ' mvn clean package -DskipTests'
+        sh '  /usr/bin/mvn clean package -DskipTests'
       }
     }
+
+    stage('Verify Workspace') {
+        steps {
+             sh 'pwd && ls -la'
+                }
+        }
 
     stage('Build Docker Image') {
       steps {
